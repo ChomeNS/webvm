@@ -13,4 +13,4 @@ ENV HOME="/root" TERM="xterm" SHELL="bash" COLOR="auto" EDITOR="nano" LANG="en_U
 
 RUN echo 'root:password' | chpasswd
 
-CMD [ "/usr/bin/bash" ]
+CMD [ "/bin/bash" ]
