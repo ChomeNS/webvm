@@ -118,7 +118,7 @@ jobs:
       # Run the docker image so that we can export the container.
       # Run the Docker container with the Google Public DNS nameservers: 8.8.8.8, 8.8.4.4
       - run: |
-          docker run --dns 8.8.8.8 --dns 8.8.4.4 -d $TAG
+          docker run --hostname mabe --dns 8.8.8.8 --dns 8.8.4.4 -d $TAG
           echo "CONTAINER_ID=$(sudo docker ps -aq)" >> $GITHUB_ENV
 
       # We extract the CMD, we first need to figure whether the Dockerfile uses CMD or an Entrypoint.
