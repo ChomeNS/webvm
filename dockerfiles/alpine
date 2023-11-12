@@ -9,7 +9,7 @@ RUN chmod +x /usr/bin/neofetch
 
 WORKDIR /home/vm
 
-RUN adduser -h /home/vm -G wheel vm
+RUN adduser -h /home/vm -DG wheel vm
 
 RUN echo 'root:password' | chpasswd
 RUN echo 'vm:password' | chpasswd
