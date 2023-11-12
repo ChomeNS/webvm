@@ -9,7 +9,7 @@ RUN chmod +x /usr/bin/neofetch
 
 WORKDIR /root
 
-ENV HOME="/root" TERM="xterm" SHELL="bash" COLOR="auto" EDITOR="nano" LANG="en_US.UTF-8" LC_ALL="C"
+ENV HOME="/root" USER="root" TERM="xterm" SHELL="bash" COLOR="auto" EDITOR="nano" LANG="en_US.UTF-8" LC_ALL="C"
 
 RUN echo 'root:password' | chpasswd
 
