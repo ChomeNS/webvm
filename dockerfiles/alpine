@@ -1,0 +1,16 @@
+FROM --platform=i386 i386/alpine
+
+RUN apk update
+
+RUN apk add nano wget sudo
+
+RUN wget https://github.com/hykilpikonna/hyfetch/raw/master/neofetch -O /usr/bin/neofetch
+RUN chmod +x /usr/bin/neofetch
+
+WORKDIR /root
+
+ENV HOME="/root" TERM="xterm" COLOR="auto" EDITOR="nano" LANG="en_US.UTF-8" LC_ALL="C"
+
+RUN echo 'root:password' | chpasswd
+
+CMD [ "/usr/bin/ash" ]
