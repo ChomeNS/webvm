@@ -7,12 +7,15 @@ RUN apk add nano wget sudo bash openssh curl
 RUN wget https://github.com/hykilpikonna/hyfetch/raw/master/neofetch -O /usr/bin/neofetch
 RUN chmod +x /usr/bin/neofetch
 
-WORKDIR /root
+WORKDIR /home/vm
 
-ENV HOME="/root" USER="root" TERM="xterm" SHELL="bash" COLOR="auto" EDITOR="nano" LANG="en_US.UTF-8" LC_ALL="C"
+RUN adduser -h /home/vm -G wheel vm
 
 RUN echo 'root:password' | chpasswd
+RUN echo 'vm:password' | chpasswd
 
-USER root
+USER vm
+
+ENV HOME="/home/vm" USER="vm" TERM="xterm" SHELL="bash" COLOR="auto" EDITOR="nano" LANG="en_US.UTF-8" LC_ALL="C"
 
 CMD [ "/bin/bash" ]
