@@ -2,11 +2,20 @@ FROM --platform=i386 i386/debian:buster
 ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get clean && apt-get update && apt-get -y upgrade
 RUN apt-get -y install apt-utils gcc \
-	python3 vim unzip ruby nodejs \
+	python3 vim unzip ruby \
 	fakeroot dbus base whiptail hexedit \
 	patch wamerican ucf manpages \
 	file luajit make lua50 dialog curl \
-	less cowsay netcat-openbsd
+	less cowsay netcat-openbsd \
+	ca-certificates gnupg
+
+# Installs Node.JS 20
+RUN mkdir -p /etc/apt/keyrings
+RUN bash -c "curl -fsSL https://deb.nodesource.com/gpgkey/nodesource-repo.gpg.key | gpg --dearmor -o /etc/apt/keyrings/nodesource.gpg"
+RUN bash -c 'echo "deb [signed-by=/etc/apt/keyrings/nodesource.gpg] https://deb.nodesource.com/node_20.x nodistro main" | tee /etc/apt/sources.list.d/nodesource.list'
+RUN apt-get update
+RUN apt-get -y install nodejs
+
 RUN useradd -m user && echo "user:password" | chpasswd
 COPY --chown=user:user ./examples /home/user/examples
 RUN chmod -R +x  /home/user/examples/lua
