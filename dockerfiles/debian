@@ -7,7 +7,7 @@ RUN apt-get -y install apt-utils gcc \
 	patch wamerican ucf manpages \
 	file luajit make lua50 dialog curl \
 	less cowsay netcat-openbsd \
-	ca-certificates gnupg
+	ca-certificates gnupg sudo
 
 # Installs Node.JS 20
 RUN mkdir -p /etc/apt/keyrings
